@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativa de precios · MercadoLibre vs Unimarc vs Líder</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#12151a; --muted:#6b7280; --line:#e5e7eb;
+    --ml:#ffe600; --ml-ink:#1a1a1a; --uni:#e4002b; --lid:#0057b8; --best:#0a7d4f; --best-bg:#e9f7f0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 20px 64px}
+  header h1{font-size:clamp(24px,3.2vw,36px);margin:0 0 6px;letter-spacing:-.02em}
+  header p{margin:0;color:var(--muted);font-size:15px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:24px 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .card .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+  .card .v{font-size:26px;font-weight:750;margin-top:2px}
+  .card .s{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .card.ml{border-top:4px solid var(--ml)}
+  .card.uni{border-top:4px solid var(--uni)}
+  .card.lid{border-top:4px solid var(--lid)}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 18px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:#c7ccd4}
+  .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  input[type=search]{flex:1;min-width:220px;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14px;background:#fff;outline:none}
+  input[type=search]:focus{border-color:#9aa3af}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+  .group{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 14px;overflow:hidden}
+  .group h2{font-size:15px;margin:0;padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+  .group h2 .unit{font-weight:500;color:var(--muted);font-size:12.5px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid #f0f1f3;vertical-align:top}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:650;background:#fafbfc}
+  tr:last-child td{border-bottom:none}
+  tr.best{background:var(--best-bg)}
+  tr.best td:first-child{box-shadow:inset 3px 0 0 var(--best)}
+  .store{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .store.ml{background:var(--ml);color:var(--ml-ink)}
+  .store.uni{background:var(--uni);color:#fff}
+  .store.lid{background:var(--lid);color:#fff}
+  .store.unk{background:#e5e7eb;color:#374151}
+  .name{font-weight:600}
+  .note{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+  .price{font-variant-numeric:tabular-nums;font-weight:650;white-space:nowrap}
+  .per{font-variant-numeric:tabular-nums;font-weight:750;white-space:nowrap}
+  .per small{font-weight:500;color:var(--muted)}
+  .bestpill{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:750;text-transform:uppercase;letter-spacing:.04em;color:var(--best);background:#d3f0e1;padding:2px 7px;border-radius:999px;vertical-align:2px}
+  .note-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:22px;font-size:13px;color:#374151}
+  .note-box h3{margin:0 0 8px;font-size:14px}
+  .note-box ul{margin:0;padding-left:18px}
+  .note-box li{margin:4px 0}
+  .empty{padding:24px;text-align:center;color:var(--muted)}
+  @media(max-width:640px){
+    .hide-sm{display:none}
+    th,td{padding:9px 10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Comparativa de precios por kilo, litro y unidad</h1>
+    <p>MercadoLibre · Unimarc · Líder — 90 productos capturados el 17-11-2026</p>
+  </header>
+
+  <div class="cards">
+    <div class="card ml"><div class="k">Mejor precio</div><div class="v">28 / 30</div><div class="s">categorías donde gana MercadoLibre</div></div>
+    <div class="card uni"><div class="k">Mejor precio</div><div class="v">1 / 30</div><div class="s">arroz grado 2</div></div>
+    <div class="card lid"><div class="k">Mejor precio</div><div class="v">1 / 30</div><div class="s">sucedáneo de limón líquido (5 L)</div></div>
+    <div class="card"><div class="k">Productos comparados</div><div class="v">90</div><div class="s">en 30 categorías</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="chips" id="chips">
+      <button class="chip active" data-store="all">Todas</button>
+      <button class="chip" data-store="MercadoLibre">MercadoLibre</button>
+      <button class="chip" data-store="Unimarc">Unimarc</button>
+      <button class="chip" data-store="Líder">Líder</button>
+    </div>
+    <input type="search" id="search" placeholder="Buscar producto (ej. lentejas, café, bicarbonato)…">
+  </div>
+  <p class="hint">Precios finales de la tarjeta (con descuento aplicado). El precio unitario se calcula sobre el contenido total del pack. La fila verde marca el menor precio por kg/L/unidad de cada categoría.</p>
+
+  <div id="groups"></div>
+
+  <div class="note-box">
+    <h3>Metodología y observaciones</h3>
+    <ul>
+      <li><strong>Normalización:</strong> precio final ÷ contenido neto total (kg, L o unidades). Los packs se llevaron a su total (ej. 36×200 g = 7,2 kg; 20×500 g = 10 kg; 12×250 g = 3 kg).</li>
+      <li><strong>Tienda:</strong> identificada por el botón de compra — “Agregar al carrito” (MercadoLibre), círculo rojo con “+” (Unimarc), caja azul “+ Agregar” (Líder).</li>
+      <li><strong>Sin botón:</strong> 171507 (porotos, “Agotado”) no permite identificar tienda con certeza; 181401 (Líder) y 173254 (Líder) estaban agotados y se clasificaron por layout/marca.</li>
+      <li><strong>Comparaciones no idénticas:</strong> arroz MercadoLibre es grado 1 y los otros grado 2; el jabón MercadoLibre es marca U Care y los otros Giselle; el sucedáneo de limón MercadoLibre es en polvo (rinde 5 L) versus líquidos.</li>
+      <li><strong>Promociones:</strong> Unimarc tiene 3×$1.000 en salsa de tomate 200 g (≈$1.665/kg), que empata con el pack 36 de MercadoLibre ($1.665/kg).</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const data = [
+  {cat:"Lentejas 6 mm", store:"MercadoLibre", name:"Lenteja 6mm Sin Remojo 1 Kilo Los Granos", size:"1 kg", price:1980, qty:1, unit:"kg", per:1980, note:"FULL · llega mañana"},
+  {cat:"Lentejas 6 mm", store:"Unimarc", name:"Lentejas 6mm Los Granos 1 kg", size:"1 kg", price:2300, qty:1, unit:"kg", per:2300, note:"11% dcto (lista $2.590)"},
+  {cat:"Lentejas 6 mm", store:"Líder", name:"Lentejas 6mm Bolsa 1 kg", size:"1 kg", price:2990, qty:1, unit:"kg", per:2990, note:"tarjeta: $2.990/kg"},
+
+  {cat:"Garbanzos sin piel", store:"MercadoLibre", name:"Garbanzo Sin Piel Los Granos 1 Kilo", size:"1 kg", price:2090, qty:1, unit:"kg", per:2090, note:"ya lo compraste"},
+  {cat:"Garbanzos sin piel", store:"Unimarc", name:"Garbanzos Merkat sin piel 1 kg", size:"1 kg", price:2490, qty:1, unit:"kg", per:2490, note:""},
+  {cat:"Garbanzos sin piel", store:"Líder", name:"Garbanzos Pelados sin Piel 1 kg", size:"1 kg", price:2990, qty:1, unit:"kg", per:2990, note:""},
+
+  {cat:"Porotos negros", store:"MercadoLibre", name:"Porotos Negros Los Granos 1 Kilo", size:"1 kg", price:1900, qty:1, unit:"kg", per:1900, note:"FULL · llega mañana"},
+  {cat:"Porotos negros", store:"Unimarc", name:"Porotos Negro Los Granos 1 kg", size:"1 kg", price:2290, qty:1, unit:"kg", per:2290, note:""},
+  {cat:"Porotos negros", store:"Sin identificar", name:"Porotos Negros Los Granos 1 Kilo", size:"1 kg", price:2290, qty:1, unit:"kg", per:2290, note:"agotado, sin botón de compra"},
+
+  {cat:"Arvejas partidas", store:"MercadoLibre", name:"Arveja Verde Partida 1 Kilo Los Granos", size:"1 kg", price:1980, qty:1, unit:"kg", per:1980, note:"ya lo compraste"},
+  {cat:"Arvejas partidas", store:"Unimarc", name:"Arvejas Partidas Nuestra Cocina 1 kg", size:"1 kg", price:2000, qty:1, unit:"kg", per:2000, note:"20% dcto (lista $2.490)"},
+  {cat:"Arvejas partidas", store:"Líder", name:"Arvejas Verdes Partidas 1 kg", size:"1 kg", price:2000, qty:1, unit:"kg", per:2000, note:"tarjeta: $2.000/kg"},
+
+  {cat:"Arroz grano largo", store:"MercadoLibre", name:"Arroz G1 Canoro Grano Largo Fino 1 kg", size:"1 kg", price:1297, qty:1, unit:"kg", per:1297, note:"grado 1 (los otros son grado 2)"},
+  {cat:"Arroz grano largo", store:"Unimarc", name:"Arroz Nuestra Cocina G2 Largo Delgado 1 kg", size:"1 kg", price:1000, qty:1, unit:"kg", per:1000, note:"20% dcto (lista $1.250)"},
+  {cat:"Arroz grano largo", store:"Líder", name:"Arroz Grado 2 Grano Largo y Delgado 1 kg", size:"1 kg", price:1290, qty:1, unit:"kg", per:1290, note:"tarjeta: $1.290/kg"},
+
+  {cat:"Salsa de tomate italiana 200 g", store:"MercadoLibre", name:"Pack 36 Salsas de Tomate Italiana 200 g Smart Price", size:"36×200 g (7,2 kg)", price:11990, qty:7.2, unit:"kg", per:1665, note:"pack grande"},
+  {cat:"MercadoLibre", store:"MercadoLibre", name:"Pack 6 Salsas de Tomate Italiana 200 g Smart Price", size:"6×200 g (1,2 kg)", price:2552, qty:1.2, unit:"kg", per:2127, note:"pack chico"},
+  {cat:"Salsa de tomate italiana 200 g", store:"Unimarc", name:"Salsa de Tomate Italiana Merkat 200 g", size:"200 g", price:390, qty:0.2, unit:"kg", per:1950, note:"promo 3×$1.000 ≈ $1.665/kg"},
+  {cat:"Salsa de tomate italiana 200 g", store:"Líder", name:"Salsa de Tomates De Reyes 36×200 g", size:"36×200 g (7,2 kg)", price:15463, qty:7.2, unit:"kg", per:2148, note:""},
+
+  {cat:"Proteína vegetal de soya", store:"MercadoLibre", name:"Carne Vegetal Proteína de Soya 1 kg", size:"1 kg", price:3290, qty:1, unit:"kg", per:3290, note:"carne vegetal texturizada · FULL"},
+  {cat:"Proteína vegetal de soya", store:"Unimarc", name:"Proteína Vegetal de Soya Nuestra Cocina 300 g", size:"300 g", price:2250, qty:0.3, unit:"kg", per:7500, note:""},
+  {cat:"Proteína vegetal de soya", store:"Líder", name:"Proteína Vegetal de Soya Gourmet 300 g", size:"300 g", price:2650, qty:0.3, unit:"kg", per:8833, note:""},
+
+  {cat:"Merkén", store:"MercadoLibre", name:"Merkén Ahumado 1 kg", size:"1 kg", price:6850, qty:1, unit:"kg", per:6850, note:""},
+  {cat:"Merkén", store:"Líder", name:"Gourmet Merkén 100 g", size:"100 g", price:2190, qty:0.1, unit:"kg", per:21900, note:""},
+  {cat:"Merkén", store:"Unimarc", name:"Merquén Gourmet 100 g", size:"100 g", price:2550, qty:0.1, unit:"kg", per:25500, note:""},
+
+  {cat:"Pimienta negra entera", store:"MercadoLibre", name:"Pimienta Entera Negra 500 g", size:"500 g", price:9950, qty:0.5, unit:"kg", per:19900, note:""},
+  {cat:"Pimienta negra entera", store:"Unimarc", name:"Pimienta Negra Entera Nuestra Cocina 15 g", size:"15 g", price:560, qty:0.015, unit:"kg", per:37333, note:""},
+  {cat:"Pimienta negra entera", store:"Líder", name:"Belufit Mix 4 Pimientas Enteras 1 kg", size:"1 kg", price:39990, qty:1, unit:"kg", per:39990, note:""},
+
+  {cat:"Ajo en polvo", store:"MercadoLibre", name:"Ajo en Polvo 1 kg", size:"1 kg", price:5400, qty:1, unit:"kg", per:5400, note:""},
+  {cat:"Ajo en polvo", store:"Unimarc", name:"Ajo en Polvo Nuestra Cocina 100 g", size:"100 g", price:1390, qty:0.1, unit:"kg", per:13900, note:""},
+  {cat:"Ajo en polvo", store:"Líder", name:"Gourmet Ajo en Polvo 100 g", size:"100 g", price:1590, qty:0.1, unit:"kg", per:15900, note:""},
+
+  {cat:"Cebolla en polvo", store:"MercadoLibre", name:"Cebolla en Polvo 500 g", size:"500 g", price:4500, qty:0.5, unit:"kg", per:9000, note:""},
+  {cat:"Cebolla en polvo", store:"Líder", name:"Cebolla en Polvo 15 g", size:"15 g", price:430, qty:0.015, unit:"kg", per:28667, note:""},
+  {cat:"Cebolla en polvo", store:"Unimarc", name:"Gourmet Cebolla en Polvo 15 g", size:"15 g", price:510, qty:0.015, unit:"kg", per:34000, note:""},
+
+  {cat:"Caldo en polvo", store:"MercadoLibre", name:"Caldo de Ave en Polvo Gourmet 800 g", size:"800 g", price:4790, qty:0.8, unit:"kg", per:5988, note:"rinde 50 L"},
+  {cat:"Caldo en polvo", store:"Unimarc", name:"Naturezza Caldo Gallina 8 tabletas 88 g", size:"88 g", price:700, qty:0.088, unit:"kg", per:7955, note:"29% dcto"},
+  {cat:"Caldo en polvo", store:"Líder", name:"Caldo en Polvo Sabor Pollo 6 sobres 48 g", size:"48 g", price:680, qty:0.048, unit:"kg", per:14167, note:"agotado"},
+
+  {cat:"Sucedáneo de limón", store:"MercadoLibre", name:"Sucedáneo de Limón en Polvo Macrofood (rinde 5 L)", size:"rinde 5 L", price:2415, qty:5, unit:"L", per:483, note:"polvo, rinde 5 L"},
+  {cat:"Sucedáneo de limón", store:"Líder", name:"Sucedáneo de Limón Bidón 5 L", size:"5 L", price:6890, qty:5, unit:"L", per:1378, note:"más barato entre los líquidos"},
+  {cat:"Sucedáneo de limón", store:"Unimarc", name:"Sucedáneo Jugo de Limón Nuestra Cocina 500 ml", size:"500 ml", price:990, qty:0.5, unit:"L", per:1980, note:""},
+
+  {cat:"Café instantáneo", store:"MercadoLibre", name:"Nescafé Tradición Tarro 400 g", size:"400 g", price:14300, qty:0.4, unit:"kg", per:35750, note:""},
+  {cat:"Café instantáneo", store:"Líder", name:"NESCAFÉ Tradición Lata 310 g", size:"310 g", price:14190, qty:0.31, unit:"kg", per:45774, note:""},
+  {cat:"Café instantáneo", store:"Unimarc", name:"Nescafé Tradición Tarro 100 g", size:"100 g", price:4890, qty:0.1, unit:"kg", per:48900, note:"25% dcto"},
+
+  {cat:"Endulzante líquido", store:"MercadoLibre", name:"Naturalist Stevia y Sucralosa 450 ml", size:"450 ml", price:2990, qty:0.45, unit:"L", per:6644, note:"25% OFF"},
+  {cat:"Endulzante líquido", store:"Líder", name:"Endulzante Líquido Stevia 400 ml", size:"400 ml", price:3890, qty:0.4, unit:"L", per:9725, note:""},
+  {cat:"Endulzante líquido", store:"Unimarc", name:"Daily Stevia Gotas 270 ml", size:"270 ml", price:3350, qty:0.27, unit:"L", per:12407, note:"17% dcto"},
+
+  {cat:"Cacao amargo en polvo", store:"MercadoLibre", name:"Cacao Amargo Sin Azúcar 1 kg", size:"1 kg", price:8990, qty:1, unit:"kg", per:8990, note:""},
+  {cat:"Cacao amargo en polvo", store:"Líder", name:"Cacao Natural en Polvo Amargo 150 g", size:"150 g", price:1990, qty:0.15, unit:"kg", per:13267, note:""},
+  {cat:"Cacao amargo en polvo", store:"Unimarc", name:"Edra Cacao Amargo en Polvo 150 g", size:"150 g", price:2490, qty:0.15, unit:"kg", per:16600, note:""},
+
+  {cat:"Leche entera en polvo", store:"MercadoLibre", name:"Leche Entera en Polvo Alacafood 800 g", size:"800 g", price:5990, qty:0.8, unit:"kg", per:7488, note:""},
+  {cat:"Leche entera en polvo", store:"Líder", name:"Leche en Polvo Entera 800 g", size:"800 g", price:6190, qty:0.8, unit:"kg", per:7738, note:""},
+  {cat:"Leche entera en polvo", store:"Unimarc", name:"Leche en Polvo Alacafood Entera 800 g", size:"800 g", price:7290, qty:0.8, unit:"kg", per:9113, note:""},
+
+  {cat:"Albúmina clara de huevo", store:"MercadoLibre", name:"Albúmina Clara de Huevo Ovosur 1 kg (2×500 g)", size:"1 kg", price:15980, qty:1, unit:"kg", per:15980, note:""},
+  {cat:"Albúmina clara de huevo", store:"Líder", name:"BioV Albúmina Clara de Huevo 300 g", size:"300 g", price:12990, qty:0.3, unit:"kg", per:43300, note:""},
+
+  {cat:"Almidón de maíz (maicena)", store:"MercadoLibre", name:"Maicena Almidón de Maíz Produsur 1 kg", size:"1 kg", price:1990, qty:1, unit:"kg", per:1990, note:""},
+  {cat:"Almidón de maíz (maicena)", store:"Líder", name:"Almidón de Maíz Maicena 500 g", size:"500 g", price:3190, qty:0.5, unit:"kg", per:6380, note:""},
+  {cat:"Almidón de maíz (maicena)", store:"Unimarc", name:"Almidón de Maíz Nuestra Cocina 250 g", size:"250 g", price:2990, qty:0.25, unit:"kg", per:11960, note:""},
+
+  {cat:"Harina de maíz precocida", store:"MercadoLibre", name:"Harina de Maíz Precocido Cusco 1 kg", size:"1 kg", price:1490, qty:1, unit:"kg", per:1490, note:""},
+  {cat:"Harina de maíz precocida", store:"Líder", name:"Harina de Maíz Blanca Precocida 1 kg", size:"1 kg", price:1890, qty:1, unit:"kg", per:1890, note:"sin gluten"},
+  {cat:"Harina de maíz precocida", store:"Unimarc", name:"Harina Blanca de Maíz Precocida 1 kg", size:"1 kg", price:2150, qty:1, unit:"kg", per:2150, note:""},
+
+  {cat:"Maní tostado sin sal", store:"MercadoLibre", name:"Maní Tostado Sin Sal 1 kg", size:"1 kg", price:3090, qty:1, unit:"kg", per:3090, note:""},
+  {cat:"Maní tostado sin sal", store:"Líder", name:"Maní Tostado Sin Sal La Soberanía 1 kg", size:"1 kg", price:4500, qty:1, unit:"kg", per:4500, note:""},
+  {cat:"Maní tostado sin sal", store:"Unimarc", name:"Maní Tostado Sin Sal Tento 700 g", size:"700 g", price:3650, qty:0.7, unit:"kg", per:5214, note:""},
+
+  {cat:"Snack para gato (Churu/Ciao)", store:"MercadoLibre", name:"Churu Gato Variedad Atún 50 unidades", size:"50 un", price:19990, qty:50, unit:"unidad", per:400, note:"19% OFF"},
+  {cat:"Snack para gato (Churu/Ciao)", store:"Líder", name:"Ciao Mix Pollo y Atún 50 unidades", size:"50 un", price:20990, qty:50, unit:"unidad", per:420, note:""},
+  {cat:"Snack para gato (Churu/Ciao)", store:"Unimarc", name:"Churu Gato Salmón 280 g (20 tubos)", size:"20 tubos", price:10490, qty:20, unit:"unidad", per:525, note:"19% dcto"},
+
+  {cat:"Guantes de limpieza", store:"MercadoLibre", name:"Guantes Multiuso Amarillo Talla S (1 par)", size:"1 par", price:1100, qty:1, unit:"par", per:1100, note:""},
+  {cat:"Guantes de limpieza", store:"Líder", name:"Guantes de Látex Aileda Talla L (2 pares)", size:"2 pares", price:2233, qty:2, unit:"par", per:1117, note:"antes $2.900"},
+  {cat:"Guantes de limpieza", store:"Unimarc", name:"Guantes Multiuso Smart Clean Talla S (1 par)", size:"1 par", price:2000, qty:1, unit:"par", per:2000, note:"20% dcto"},
+  {cat:"Guantes de limpieza", store:"Unimarc", name:"Guantes Bio Virutex 100% Látex Talla M (1 par)", size:"1 par", price:3190, qty:1, unit:"par", per:3190, note:"otra línea (biodegradable)"},
+
+  {cat:"Toallitas húmedas desinfectantes", store:"MercadoLibre", name:"Toallitas Húmedas Desinfectantes Purity Eco 50 u", size:"50 un", price:1100, qty:50, unit:"unidad", per:22, note:""},
+  {cat:"Toallitas húmedas desinfectantes", store:"Unimarc", name:"Toallas Húmedas Virutex Desinfectante 90 u", size:"90 un", price:3010, qty:90, unit:"unidad", per:33, note:"38% dcto"},
+  {cat:"Toallitas húmedas desinfectantes", store:"Líder", name:"Toallitas Desinfectantes Limón 50 u", size:"50 un", price:2000, qty:50, unit:"unidad", per:40, note:"tarjeta: $40/un"},
+
+  {cat:"Jabón en barra (pack 3×90 g)", store:"MercadoLibre", name:"Jabón U Care Manzana Pack 3×90 g", size:"270 g", price:1279, qty:0.27, unit:"kg", per:4737, note:"14% OFF"},
+  {cat:"Jabón en barra (pack 3×90 g)", store:"Líder", name:"Jabón Giselle Pack Barra Variedades 3×90 g", size:"270 g", price:1850, qty:0.27, unit:"kg", per:6852, note:""},
+  {cat:"Jabón en barra (pack 3×90 g)", store:"Unimarc", name:"Jabón en Barra Giselle Toilette 3×90 g", size:"270 g", price:2150, qty:0.27, unit:"kg", per:7963, note:""},
+
+  {cat:"Trapero húmedo", store:"MercadoLibre", name:"Trapero Húmedo Paño Tía Clarita 60 cm (12 u)", size:"12 un", price:1390, qty:12, unit:"unidad", per:116, note:"44% OFF"},
+  {cat:"Trapero húmedo", store:"Líder", name:"Trapero Húmedo Virutex Bergamota 12 u", size:"12 un", price:2000, qty:12, unit:"unidad", per:167, note:""},
+  {cat:"Trapero húmedo", store:"Unimarc", name:"Traperos Húmedos Smart Clean Limón 10 u", size:"10 un", price:1790, qty:10, unit:"unidad", per:179, note:"20% dcto"},
+
+  {cat:"Bicarbonato de sodio", store:"MercadoLibre", name:"Bicarbonato de Sodio 5 kg", size:"5 kg", price:6950, qty:5, unit:"kg", per:1390, note:""},
+  {cat:"Bicarbonato de sodio", store:"Líder", name:"Bicarbonato Formato XL 3 kg", size:"3 kg", price:11192, qty:3, unit:"kg", per:3731, note:"antes $13.990"},
+  {cat:"Bicarbonato de sodio", store:"Unimarc", name:"Bicarbonato Gourmet con Zipper 100 g", size:"100 g", price:790, qty:0.1, unit:"kg", per:7900, note:""},
+
+  {cat:"Puré de papas", store:"MercadoLibre", name:"Puré de Papas Tradicional Alcafood 1 kg", size:"1 kg", price:6070, qty:1, unit:"kg", per:6070, note:""},
+  {cat:"Puré de papas", store:"Líder", name:"Puré de Papas Tradicional Alcafood caja 250 g (pack 12)", size:"3 kg", price:23900, qty:3, unit:"kg", per:7967, note:"pack 12 cajas"},
+  {cat:"Puré de papas", store:"Unimarc", name:"Puré de Papas Instantáneo Hoffmann 125 g", size:"125 g", price:1000, qty:0.125, unit:"kg", per:8000, note:"33% dcto"},
+
+  {cat:"Maíz curagua para cabritas", store:"MercadoLibre", name:"Maíz Curagua para Cabritas 1 kg", size:"1 kg", price:1870, qty:1, unit:"kg", per:1870, note:""},
+  {cat:"Maíz curagua para cabritas", store:"Unimarc", name:"Maíz Curagua La Fuente Natural 500 g", size:"500 g", price:2450, qty:0.5, unit:"kg", per:4900, note:""},
+
+  {cat:"Pasta spaghetti N°5", store:"MercadoLibre", name:"Pasta Spaghetti N°5 Canoro caja 20×500 g", size:"10 kg", price:11900, qty:10, unit:"kg", per:1190, note:"pack 20 paquetes"},
+  {cat:"Pasta spaghetti N°5", store:"Unimarc", name:"Pasta Spaghetti N°5 Merkat 400 g", size:"400 g", price:520, qty:0.4, unit:"kg", per:1300, note:""},
+  {cat:"Pasta spaghetti N°5", store:"Líder", name:"Fideo Pasta Spaghetti N°5 Acuenta 400 g", size:"400 g", price:520, qty:0.4, unit:"kg", per:1300, note:"agotado"}
+];
+
+// fix accidental category typo key (kept data intact)
+data.forEach(d => { if (d.cat === "MercadoLibre") d.cat = "Salsa de tomate italiana 200 g"; });
+
+const fmt = n => {
+  const v = Math.round(n);
+  return "$" + v.toLocaleString("es-CL");
+};
+const unitLabel = u => u === "kg" ? "kg" : u === "L" ? "L" : "un";
+
+const state = { store: "all", q: "" };
+const chips = document.getElementById("chips");
+const search = document.getElementById("search");
+const groupsEl = document.getElementById("groups");
+
+chips.addEventListener("click", e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  chips.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  b.classList.add("active");
+  state.store = b.dataset.store;
+  render();
+});
+search.addEventListener("input", e => { state.q = e.target.value.toLowerCase().trim(); render(); });
+
+function render(){
+  const cats = [...new Set(data.map(d => d.cat))];
+  let html = "";
+  let visible = 0;
+  cats.forEach(cat => {
+    let rows = data.filter(d => d.cat === cat);
+    if (state.store !== "all") rows = rows.filter(d => d.store === state.store);
+    if (state.q) rows = rows.filter(d => (d.name + " " + d.cat).toLowerCase().includes(state.q));
+    if (!rows.length) return;
+    visible += rows.length;
+    const unit = rows[0].unit;
+    const min = Math.min(...rows.map(r => r.per));
+    rows.sort((a,b) => a.per - b.per);
+    html += `<section class="group"><h2>${cat} <span class="unit">· precio por ${unitLabel(unit)}</span></h2><table><thead><tr>
+      <th style="width:150px">Tienda</th><th>Producto</th><th class="hide-sm" style="width:130px">Formato</th>
+      <th style="width:105px">Precio</th><th style="width:130px">Precio ${unitLabel(unit) === "un" ? "por unidad" : "por " + unitLabel(unit)}</th></tr></thead><tbody>`;
+    rows.forEach(r => {
+      const isBest = r.per === min;
+      const cls = r.store === "MercadoLibre" ? "ml" : r.store === "Unimarc" ? "uni" : r.store === "Líder" ? "lid" : "unk";
+      html += `<tr class="${isBest ? "best" : ""}">
+        <td><span class="store ${cls}">${r.store}</span></td>
+        <td><span class="name">${r.name}</span>${r.note ? `<span class="note">${r.note}</span>` : ""}</td>
+        <td class="hide-sm">${r.size}</td>
+        <td class="price">${fmt(r.price)}</td>
+        <td class="per">${fmt(r.per)} <small>/${unitLabel(r.unit)}</small>${isBest ? '<span class="bestpill">menor</span>' : ""}</td>
+      </tr>`;
+    });
+    html += `</tbody></table></section>`;
+  });
+  groupsEl.innerHTML = visible ? html : `<div class="group empty">No encontré productos con ese filtro.</div>`;
+}
+render();
+</script>
+</body>
+</html>
